@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.css">
+  
+  <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.js"></script>
+
+	{% block head %}
+	<title>searchGoods</title>
+	{% endblock %}
+</head>
+<body>
+	{% block body %}
+
+  <body>
+
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+      <a class="navbar-brand" href="/WMS">库存控制管理系统</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+        <a href="/WMS/addGoods" class="btn btn-success" role="button">增加</a>
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active">
+          </li>
+          <li class="nav-item">
+          </li>
+          <li class="nav-item">
+          </li>
+          <li class="nav-item">
+          </li>
+        </ul>
+        <form class="form-inline my-2 my-lg-0" method="get" action="{% url 'goods_search' %}">
+           {% csrf_token %}
+          <input class="form-control mr-sm-2" name="q" type="search" placeholder="Search" aria-label="Search">
+          <button  class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        </form>
+      </div>
+    </nav>
+    {% if error_msg %}
+    <p>{{ error_msg }}</p>
+  {% endif %}
+   <table class="table table-hover">
+    <thead class="text-center">
+       <th>商品编号</th>
+       <th>商品名称</th>
+       <th>类别</th>
+       <th>计划进货价格</th>
+       <th>计划出货价格</th>
+       <th>原始库存</th>  
+       <th>操作</th>  
+    </thead>
+    <tbody>
+      {% for foo in content %}
+      <tr class="text-center">
+        <td>{{ foo.goods_id }}</td>
+        <td>{{ foo.goods_name }}</td>
+        <td>{{ foo.goods_type }}</td>
+        <td>{{ foo.plan_in_cost }}</td>
+        <td>{{ foo.plan_out_cost }}</td>
+        <td>{{ foo.storage }}</td>
+        <td>
+          <a href="{% url 'goods_delete' foo.id %}" onclick="return confirm('你确定要删除吗？')" class="btn btn-danger" role="button">删除</a>
+          <a href="{%url 'goods_update' foo.id%}" class="btn btn-primary" role="button">更改</a>
+          </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+	{% endblock %}
+</body>
+</html>

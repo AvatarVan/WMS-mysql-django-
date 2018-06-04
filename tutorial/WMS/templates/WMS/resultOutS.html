@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+<!DOCTYPE html>
+<html>
+<head>
+	{% block head %}
+	<title>outS</title>
+	{% endblock %}
+</head>
+<body>
+	{% block body %}
+
+  <body>
+
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+      <a class="navbar-brand" href="/WMS">库存控制管理系统</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active">
+          </li>
+          <li class="nav-item">
+          </li>
+          <li class="nav-item">
+          </li>
+          <li class="nav-item">
+          </li>
+        </ul>
+        <form class="form-inline my-2 my-lg-0">
+          <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
+          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        </form>
+      </div>
+    </nav>
+
+    <table class="table table-hover">
+    <thead class="text-center">
+       <th>出库单号</th>
+       <th>出库日期</th>
+       <th>商品编号</th>
+       <th>商品名称</th>
+       <th>出货数量</th>
+       <th>出货价格</th>  
+       <th>出货总价</th> 
+       <th>操作</th> 
+    </thead>
+    <tbody>
+      {% for foo in content %}
+      <tr class="text-center">
+        <td>{{ foo.out_id }}</td>
+        <td>{{ foo.out_date }}</td>
+        <td>{{ foo.goods_id }}</td>
+        <td>{{ foo.goods_name }}</td>
+        <td>{{ foo.out_number }}</td>
+        <td>{{ foo.out_cost }}</td>
+        <td>{{ foo.out_amount }}</td>
+        <td>
+          <a href="{% url 'OutS_delete' foo.id %}" onclick="return confirm('你确定要删除吗？')" class="btn btn-danger" role="button">删除</a>
+          <a href="{%url 'OutS_update' foo.id%}" class="btn btn-primary" role="button">更改</a>
+          </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+	{% endblock %}
+
+</body>
+</html>

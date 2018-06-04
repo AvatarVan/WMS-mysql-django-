@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+<!DOCTYPE html>
+<html>
+<head>
+	{% block head %}
+	<title>Home</title>
+	{% endblock %}
+</head>
+<body>
+	{% block body %}
+	  <div class="jumbotron">
+        <div class="container">
+          <h1 class="display-15">欢迎进入库存控制管理系统！</h1>
+          <p>本系统由商品管理模块，入库管理模块，出库管理模块及库存盘点模块组成。
+          </p>
+        </div>
+      </div>
+
+      <div class="container">
+        <!-- Example row of columns -->
+        <div class="row">
+          <div class="col-md-3">
+            <h2>商品信息</h2>
+            <p>本表单包含仓库中所有商品信息，可以进行增删改查操作。</p>
+            <p><a class="btn btn-secondary" href="/WMS/goods" role="button">进入表单 &raquo;</a></p>
+          </div>
+          <div class="col-md-3">
+            <h2>入库记录</h2>
+            <p>本表单包含仓库中所有入库记录信息，可以进行增改查操作。</p>
+            <p><a class="btn btn-secondary" href="/WMS/inS" role="button">进入表单 &raquo;</a></p>
+          </div>
+          <div class="col-md-3">
+            <h2>出库记录</h2>
+            <p>本表单包含仓库中所有入库记录信息，可以进行删改查操作。</p>
+            <p><a class="btn btn-secondary" href="/WMS/outS" role="button">进入表单 &raquo;</a></p>
+        </div>
+            <div class="col-md-3">
+            <h2>盘库记录</h2>
+            <p>本表单包含盘库记录，可以进行增删改查操作，并计算盈亏数量。</p>
+            <p><a class="btn btn-secondary" href="/WMS/total" role="button">进入表单 &raquo;</a></p>
+          </div>
+        </div>
+        <hr>
+      </div> <!-- /container -->
+
+
+    <footer class="container">
+      <p>&copy; 电子科技大学 米小凡 2016060104013</p>
+    </footer>
+    {% endblock %}
+</div>
+</body>
+</html>

@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block head %}
+	<title>updateGoods</title>
+{% endblock %}
+
+{% block body %}
+<div class="container">
+	<br>
+	<br>
+	<form class="text-center" method="post" >
+	    {% csrf_token %}
+	    <div class="alert alert-secondary" role="alert">
+  			<strong>请更改商品信息</strong>
+		</div>
+	    {{ content.as_p }}
+     	<button class="btn btn-outline-success" type="submit">确认</button>
+		<a href="/WMS/inS" class="btn btn-outline-danger" role="button">取消</a>
+	</form>
+{% endblock %}

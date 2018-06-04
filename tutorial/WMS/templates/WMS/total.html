@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+<!DOCTYPE html>
+<html>
+<head>
+	{% block head %}
+	<title>total</title>
+	{% endblock %}
+</head>
+<body>
+	{% block body %}
+
+  <body>
+
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+      <a class="navbar-brand" href="/WMS">库存控制管理系统</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+        <a href="/WMS/addTotal" class="btn btn-success" role="button">增加</a>
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active">
+          </li>
+          <li class="nav-item">
+          </li>
+          <li class="nav-item">
+          </li>
+          <li class="nav-item">
+          </li>
+        </ul>
+        <form class="form-inline my-2 my-lg-0" method="get" action="{% url 'total_search' %}">
+           {% csrf_token %}
+          <input class="form-control mr-sm-2" name="q" type="search" placeholder="Search" aria-label="Search">
+          <button  class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        </form>
+      </div>
+    </nav>
+
+    <table class="table table-hover">
+    <thead class="text-center">
+       <th>商品编号</th>
+       <th>商品名称</th>
+       <th>上月盘存</th>
+       <th>本月入库</th>
+       <th>本月出库</th>
+       <th>结余</th>  
+       <th>盈亏数量</th>  
+       <th>操作</th>
+    </thead>
+    <tbody>
+      {% for foo in content %}
+      <tr class="text-center">
+        <td>{{ foo.goods_id }}</td>
+        <td>{{ foo.goods_name }}</td>
+        <td>{{ foo.last_month }}</td>
+        <td>{{ foo.inNum }}</td>
+        <td>{{ foo.outNum }}</td>
+        <td>{{ foo.remain }}</td>
+        <td>{{ foo.outNum|add:foo.inNum }}</td>
+        <td>
+         <a href="{% url 'total_delete' foo.id %}" onclick="return confirm('你确定要删除吗？')" class="btn btn-danger" role="button">删除</a>
+          <a href="{%url 'total_update' foo.id%}" class="btn btn-primary" role="button">更改</a>
+          </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+    </main><!-- /.container -->
+
+	{% endblock %}
+
+</body>
+</html>

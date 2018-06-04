@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>登陆</title>
+{% endblock %}
+{% block body %}
+<div class="container">
+	<br>
+	<br>
+	<br>
+	<h1>欢迎进入库存管理系统</h1>
+	<br>
+	<br>
+	<h2> 请登录</h2>
+	<br>
+	<form method="post">
+		{% csrf_token %}
+		{{ form.as_p }}
+		<div class="checkbox mb-3">
+        <label>
+          <input type="checkbox" value="remember-me"> Remember me
+        </label>
+      </div>
+      <button class="btn btn-lg btn-primary " type="submit">登录</button>
+       <p class="mt-5 mb-3 text-muted">&copy;2018-2019</p>
+	</form>
+
+	<body class="text-center">
+    
+  </body>
+</div>
+{% endblock %}
